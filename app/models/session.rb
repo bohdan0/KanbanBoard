@@ -10,8 +10,13 @@ class Session < ApplicationRecord
     SecureRandom.urlsafe_base64(128)
   end
 
-  def self.log_out(session_token)
-    find(session_token: session_token).destroy
+  def self.log_in(user)
+    new_session = create(user: user)
+    new_session.session_token
+  end
+
+  def self.log_out(session)
+    session ? session.destroy : nil
   end
 
   def ensure_session_token
