@@ -3,6 +3,6 @@ class Task < ApplicationRecord
   validates :resolved, inclusion: { in: [true, false] }
 
   belongs_to :list
-  belongs_to :author,
+  has_one :author,
     through: :list
 end
