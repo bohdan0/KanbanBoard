@@ -7,6 +7,12 @@ class Home extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    if (this.props.fetchAllLists) {
+      this.props.fetchAllLists();
+    }
+  }
+
   render() {
     return (
       <div className='home'>
