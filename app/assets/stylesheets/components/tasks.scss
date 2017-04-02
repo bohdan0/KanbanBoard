@@ -1,0 +1,23 @@
+.task-index {
+  display: flex;
+  flex-direction: column;
+
+  .task-item {
+    padding: 10px;
+    border: 1px black solid;
+
+    form {
+      display: flex;
+
+      .task-item-title {
+        margin-left: 10px;
+      }
+
+      .task-item-delete {
+        width: 15px;
+        height: 15px;
+        background: red;
+      }
+    }
+  }
+}
