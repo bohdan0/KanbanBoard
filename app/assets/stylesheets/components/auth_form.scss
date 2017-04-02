@@ -1,0 +1,147 @@
+.auth-form {
+  font-family: 'Questrial';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  h3 {
+    font-size: 40px;
+    font-family: 'Prata';
+    margin: 0 auto;
+    margin: 20px;
+  }
+
+  .auth-form-main {
+    background: #ffffff;
+    border: 1px solid #dedede;
+    padding: 30px;
+    min-width: 400px;
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        padding: 10px;
+        margin: 20px 10px 20px 10px;
+        width: 80%;
+        font-size: 25px;
+        border: 1px solid #cacaca;
+      }
+
+      .auth-form-input {
+        padding-left: 20px;
+        letter-spacing: 2px;
+      }
+
+      input::-webkit-input-placeholder {
+        font-size: 25px;
+        color: #9c9c9c;
+      }
+
+      input[type='submit'] {
+        text-align: center;
+        border-width: 0;
+        min-height: 25px;
+        color: #ffffff;
+        background: #0079bf;
+        border: 1px solid #0079bf;
+      }
+
+      input[type='submit']:hover {
+        background: #015382;
+        cursor: pointer;
+      }
+
+      input[type='submit']:active {
+        background: #015382;
+      }
+
+      input:focus {
+        outline-style: none;
+        box-shadow: 0 0 1.5px 1.5px #61C5FA;
+      }
+    }
+  }
+  .switch-panel {
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 14px;
+    font-family: 'Prata';
+
+    a {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .auth-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    .auth-form-top {
+      img {
+        width: 80px;
+      }
+
+      h3 {
+        font-size: 24px;
+        margin: 10px;
+      }
+    }
+
+    .auth-form-main {
+      padding: 20px;
+      max-width: 350px;
+
+      ul {
+        li {
+          font-size: 16px;
+          margin: 5px;
+        }
+      }
+
+      form {
+        input::-webkit-input-placeholder {
+          font-size: 20px;
+          color: #9c9c9c;
+        }
+
+        input[type='submit'] {
+          font-size: 24px;
+          color: #ffffff;
+        }
+      }
+
+      .switch-panel {
+        margin-top: 10px;
+        padding-top: 20px;
+
+        a {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 800px) {
+  .auth-form {
+    min-width: 350px;
+  }
+}
