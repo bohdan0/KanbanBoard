@@ -1,16 +1,16 @@
 import React from 'react';
 
-class NewList extends React.Component {
+class NewTask extends React.Component {
   constructor(props) {
     super(props);
     this.state = { title: '' };
 
-    this.createList = this.createList.bind(this);
+    this.createTask = this.createTask.bind(this);
   }
 
-  createList(e) {
+  createTask(e) {
     e.preventDefault();
-    this.props.createList(this.state)
+    this.props.createTask(this.state)
       .then(this.setState({ title: ''}));
   }
 
@@ -22,12 +22,12 @@ class NewList extends React.Component {
 
   render() {
     return (
-      <div className='list-item'>
-        <form onSubmit={ this.createList }>
+      <div className='task-item'>
+        <form onSubmit={ this.createTask }>
           <input
             type="text"
             value={ this.state.title }
-            placeholder='Add a list'
+            placeholder='Add a task'
             onChange={ this.update('title') }
           />
         </form>
@@ -36,4 +36,4 @@ class NewList extends React.Component {
   }
 }
 
-export default NewList;
+export default NewTask;

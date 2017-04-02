@@ -46,7 +46,7 @@ class ListItem extends React.Component {
             onClick={ this.deleteList }
           />
         </div>
-        <TaskIndexContainer task_ids={ list.task_ids } />
+        <TaskIndexContainer list={ list } />
       </div>
     );
   }
