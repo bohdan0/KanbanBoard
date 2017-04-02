@@ -1,0 +1,29 @@
+export const fetchAllLists = () => (
+  $.ajax({
+    url: '/api/lists',
+    method: 'GET'
+  })
+);
+
+export const createList = list => (
+  $.ajax({
+    url: '/api/lists',
+    method: 'POST',
+    data: { list }
+  })
+);
+
+export const updateList = list => (
+  $.ajax({
+    url: `/api/lists/${ list.id }`,
+    method: 'PATCH',
+    data: { list }
+  })
+);
+
+export const removeList = id => (
+  $.ajax({
+    url: `/api/lists/${ id }`,
+    method: 'DELETE'
+  })
+);
