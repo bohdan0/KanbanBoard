@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -7,6 +7,12 @@ class AuthForm extends React.Component {
     this.state = { username: '', password: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.loggedIn) {
+      this.props.router.push('/home');
+    }
   }
 
   update(field) {
@@ -17,9 +23,7 @@ class AuthForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state)
-      .then(() => this.props.router.push('/home'))
-      .fail(() => this.setState({ username: '', password: '' }));
+    this.props.processForm(this.state);
   }
 
   render() {
@@ -68,4 +72,4 @@ class AuthForm extends React.Component {
   }
 }
 
-export default AuthForm;
+export default withRouter(AuthForm);

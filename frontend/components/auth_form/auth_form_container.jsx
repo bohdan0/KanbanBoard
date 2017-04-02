@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import AuthForm from './auth_form';
 import { logIn, signUp } from '../../actions/session_actions';
 
-const mapStateToProps = store => ({
-
+const mapStateToProps = ({ currentUser }) => ({
+  loggedIn: Boolean(currentUser.id)
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {

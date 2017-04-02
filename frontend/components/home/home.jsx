@@ -1,5 +1,7 @@
 import React from 'react';
 
+import HeaderContainer from '../header/header_container';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -7,7 +9,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <h1>HomeComponent</h1>
+      <div className='home'>
+        <HeaderContainer />
+        <h1>HomeComponent</h1>
+      </div>
     );
   }
 }
