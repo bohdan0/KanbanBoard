@@ -1,6 +1,6 @@
 class Api::TasksController < ApplicationController
   def index
-    @tasks = Task.where(author: current_user)
+    @tasks = Task.joins(:list).where(lists: { author: current_user })
   end
 
   def show
