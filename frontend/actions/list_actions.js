@@ -19,10 +19,10 @@ export const removeList = list => ({
   list
 });
 
-export const fetchAllLists = () => dispatch => {
-  return ListApiUtil.fetchAllLists()
+export const fetchAllLists = () => dispatch => (
+  ListApiUtil.fetchAllLists()
     .then(lists => dispatch(receiveAllLists(lists)))
-};
+);
 
 export const createList = data => dispatch => (
   ListApiUtil.createList(data)

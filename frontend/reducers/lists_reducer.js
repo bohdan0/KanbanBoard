@@ -17,6 +17,7 @@ const ListsReducer = (state = {}, action) => {
       });
       return action.lists;
     case RECEIVE_LIST:
+      delete action.list.tasks;
       newState[action.list.id] = action.list;
       return newState;
     case REMOVE_LIST:

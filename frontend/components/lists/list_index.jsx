@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ListItem from './list_item';
+import ListItemContainer from './list_item_container';
 import NewList from './new_list';
 
 class ListIndex extends React.Component {
@@ -14,13 +14,13 @@ class ListIndex extends React.Component {
       <div className='list-index'>
         {
           Object.keys(lists).map(listId => (
-            <ListItem
+            <ListItemContainer
               key={ listId }
               list={ lists[listId] }
             />
           ))
         }
-        <NewList />
+        <NewList createList={ this.props.createList } />
       </div>
     );
   }
