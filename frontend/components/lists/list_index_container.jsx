@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import ListIndex from './list_index';
 
-const mapStateToProps = store => ({
-
+const mapStateToProps = ({ lists }) => ({
+  lists
 });
 
 const mapDispatchToProps = dispatch => ({
