@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   helper_method :current_user
 
+  def root
+  end
+
   def current_session
     @current_session ||= Session.find_by_session_token(session[:session_token])
   end
