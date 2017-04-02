@@ -7,7 +7,7 @@ class Api::ListsController < ApplicationController
     @list = List.includes(:tasks).find(params[:id])
 
     if @list
-      render json: @list.to_json(only: [:id, :title]), status: 200
+      render :show
     else
       render json: ['Not found'], status: 404
     end
@@ -18,7 +18,7 @@ class Api::ListsController < ApplicationController
     @list.author = current_user
     
     if @list.save
-      render json: @list.to_json(only: [:id, :title]), status: 200
+      render :show
     else
       render json: @list.errors.full_messages, status: 422
     end
@@ -28,7 +28,7 @@ class Api::ListsController < ApplicationController
     @list = List.find(params[:id])
 
     if @list.update(list_params)
-      render json: @list.to_json(only: [:id, :title]), status: 200
+      render :show
     else
       render json: @list.errors.full_messages, status: 422
     end
@@ -38,7 +38,7 @@ class Api::ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.destroy
 
-    render json: @list.to_json(only: [:id, :title]), status: 200
+    render :show
   end
 
   private

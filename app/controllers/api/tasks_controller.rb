@@ -7,7 +7,7 @@ class Api::TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task
-      render json: @task.to_json(only: [:id, :title, :list_id, :resolved]), status: 200
+      render :show
     else
       render json: ['Not found'], status: 404
     end
@@ -17,7 +17,7 @@ class Api::TasksController < ApplicationController
     @task = Task.new(task_params)
     
     if @task.save
-      render json: @task.to_json(only: [:id, :title, :list_id, :resolved]), status: 200
+      render :show
     else
       render json: @task.errors.full_messages, status: 422
     end
@@ -27,7 +27,7 @@ class Api::TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update(task_params)
-      render json: @task.to_json(only: [:id, :title, :list_id, :resolved]), status: 200
+      render :show
     else
       render json: @task.errors.full_messages, status: 422
     end
@@ -37,7 +37,7 @@ class Api::TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
 
-    render json: @task.to_json(only: [:id, :title, :list_id, :resolved]), status: 200
+    render :show
   end
 
   private
