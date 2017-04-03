@@ -1,4 +1,5 @@
 import React from 'react';
+import { DragSource } from 'react-dnd';
 
 class TaskItem extends React.Component {
   constructor(props) {
@@ -7,6 +8,14 @@ class TaskItem extends React.Component {
 
     this.updateTask = this.updateTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newList && nextProps.isDragging
+        && this.props.task.list_id !== nextProps.newList.id) 
+    {
+      this.props.moveTask(this.props.task, nextProps.newList);
+    }
   }
 
   deleteTask() {
@@ -18,17 +27,18 @@ class TaskItem extends React.Component {
   }
 
   update(type) {
-    return event => {
-      if (type === 'resolved') {
-        this.setState({ [type]: !this.state[type] }, this.updateTask);
-      } else {
-        this.setState({ [type]: event.target.value });
-      }
-    };
+    if (type === 'resolved') {
+      return () => this.setState({ [type]: !this.state[type] }, this.updateTask);
+    } else {
+      return () => this.setState({ [type]: event.target.value });
+    }
   }
 
   render() {
-    return (
+    const { id } = this.props.task;
+    const { isDragging, connectDragSource } = this.props;
+
+    return connectDragSource(
       <div className='task-item'>
         <form onSubmit={ this.updateTask }>
           <input
@@ -53,4 +63,27 @@ class TaskItem extends React.Component {
   }
 }
 
-export default TaskItem;
+const taskSource = {
+  beginDrag(props) {
+    const { task } = props;
+    return task;
+  },
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      return;
+    }
+
+    const task = monitor.getItem();
+    const list = monitor.getDropResult();
+  }
+};
+
+const collect = (connect, monitor) => {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
+    newList: monitor.getDropResult()
+  };
+};
+
+export default DragSource('task', taskSource, collect)(TaskItem);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { DropTarget } from 'react-dnd';
 
 import TaskIndexContainer from '../tasks/tasks_index_container';
 
@@ -29,7 +30,8 @@ class ListItem extends React.Component {
 
   render() {
     const list = this.props.list;
-    return (
+    const { connectDropTarget } = this.props;
+    return connectDropTarget(
       <div className='list-item'>
         <div className='list-item-header'>
           <form onSubmit={ this.updateList }>
@@ -52,4 +54,17 @@ class ListItem extends React.Component {
   }
 }
 
-export default ListItem;
+const dropTarget = {
+  drop(props, monitor, component) {
+    const { list } = props;
+    return list;
+  }
+};
+
+const collect = (connect, monitor) => {
+  return {
+    connectDropTarget: connect.dropTarget()
+  };
+};
+
+export default DropTarget('task', dropTarget, collect)(ListItem);

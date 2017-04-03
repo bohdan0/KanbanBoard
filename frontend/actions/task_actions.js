@@ -3,8 +3,9 @@ import * as TasksApiUtil from '../util/tasks_api_util';
 export const RECEIVE_TASK = 'RECEIVE_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 
-export const receiveTask = task => ({
+export const receiveTask = (task, oldListId) => ({
   type: RECEIVE_TASK,
+  oldListId,
   task
 });
 
@@ -27,3 +28,10 @@ export const deleteTask = id => dispatch => (
   TasksApiUtil.removeTask(id)
     .then(task => dispatch(removeTask(task)))
 );
+
+export const moveTask = (task, list) => dispatch => {
+  const oldListId = task.list_id;
+  task.list_id = list.id;
+  TasksApiUtil.updateTask(task)
+    .then(updatedTask => dispatch(receiveTask(updatedTask, oldListId)));
+};

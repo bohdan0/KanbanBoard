@@ -25,8 +25,13 @@ const ListsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_TASK:
       let taskIds = newState[action.task.list_id].task_ids;
-      if (taskIds.indexOf(action.task.id) === -1)
+      if (taskIds.indexOf(action.task.id) === -1) {
         newState[action.task.list_id].task_ids = [action.task.id, ...taskIds];
+      }
+      if (action.oldListId) {
+        let idxToDelete = newState[action.oldListId].task_ids.indexOf(action.task.id);
+        newState[action.oldListId].task_ids.splice(idxToDelete, 1);
+      }
       return newState;
     case REMOVE_TASK:
       const idxToRemove = newState[action.task.list_id].task_ids.indexOf(action.task.id);
