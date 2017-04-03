@@ -2,6 +2,7 @@ import * as TasksApiUtil from '../util/tasks_api_util';
 
 export const RECEIVE_TASK = 'RECEIVE_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
+export const DROP_TASK = 'DROP_TASK';
 
 export const receiveTask = (task, oldListId) => ({
   type: RECEIVE_TASK,
@@ -11,6 +12,13 @@ export const receiveTask = (task, oldListId) => ({
 
 export const removeTask = task => ({
   type: REMOVE_TASK,
+  task
+});
+
+export const dropTask = (task, oldListId, taskId) => ({
+  type: DROP_TASK,
+  oldListId,
+  taskId,
   task
 });
 
@@ -29,9 +37,9 @@ export const deleteTask = id => dispatch => (
     .then(task => dispatch(removeTask(task)))
 );
 
-export const moveTask = (task, list) => dispatch => {
+export const moveTask = (task, listId, taskId) => dispatch => {
   const oldListId = task.list_id;
-  task.list_id = list.id;
+  task.list_id = listId;
   TasksApiUtil.updateTask(task)
-    .then(updatedTask => dispatch(receiveTask(updatedTask, oldListId)));
+    .then(updatedTask => dispatch(dropTask(updatedTask, oldListId, taskId)));
 };

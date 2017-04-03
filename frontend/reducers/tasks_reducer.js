@@ -1,7 +1,8 @@
 import merge from 'lodash/merge';
 
 import { RECEIVE_TASK,
-         REMOVE_TASK } from '../actions/task_actions';
+         REMOVE_TASK,
+         DROP_TASK } from '../actions/task_actions';
 import { RECEIVE_ALL_LISTS,
          REMOVE_LIST } from '../actions/list_actions';
 
@@ -11,6 +12,7 @@ const TasksReducer = (state = {}, action) => {
   
   switch(action.type) {
     case RECEIVE_TASK:
+    case DROP_TASK:
       newState[action.task.id] = action.task;
       return newState;
     case REMOVE_TASK:

@@ -1,5 +1,6 @@
 import React from 'react';
-import { DragSource } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
+import { flow } from 'lodash';
 
 class TaskItem extends React.Component {
   constructor(props) {
@@ -8,14 +9,6 @@ class TaskItem extends React.Component {
 
     this.updateTask = this.updateTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.newList && nextProps.isDragging
-        && this.props.task.list_id !== nextProps.newList.id) 
-    {
-      this.props.moveTask(this.props.task, nextProps.newList);
-    }
   }
 
   deleteTask() {
@@ -36,9 +29,9 @@ class TaskItem extends React.Component {
 
   render() {
     const { id } = this.props.task;
-    const { isDragging, connectDragSource } = this.props;
+    const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
-    return connectDragSource(
+    return connectDragSource(connectDropTarget(
       <div className='task-item'>
         <form onSubmit={ this.updateTask }>
           <input
@@ -59,7 +52,7 @@ class TaskItem extends React.Component {
           />
         </form>
       </div>
-    );
+    ));
   }
 }
 
@@ -74,11 +67,12 @@ const taskSource = {
     }
 
     const task = monitor.getItem();
-    const list = monitor.getDropResult();
+    const { listId, taskId } = monitor.getDropResult();
+    props.moveTask(task, listId, taskId);
   }
 };
 
-const collect = (connect, monitor) => {
+const sourceCollect = (connect, monitor) => {
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging(),
@@ -86,4 +80,20 @@ const collect = (connect, monitor) => {
   };
 };
 
-export default DragSource('task', taskSource, collect)(TaskItem);
+const dropTarget = {
+  drop(props, monitor, component) {
+    const { task } = props;
+    return { listId: task.list_id, taskId: task.id };
+  }
+};
+
+const dropCollect = (connect, monitor) => {
+  return {
+    connectDropTarget: connect.dropTarget()
+  };
+};
+
+export default flow(
+  DragSource('task', taskSource, sourceCollect),
+  DropTarget('task', dropTarget, dropCollect)
+)(TaskItem);
