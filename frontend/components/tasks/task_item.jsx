@@ -23,7 +23,7 @@ class TaskItem extends React.Component {
     if (type === 'resolved') {
       return () => this.setState({ [type]: !this.state[type] }, this.updateTask);
     } else {
-      return () => this.setState({ [type]: event.target.value });
+      return (event) => this.setState({ [type]: event.target.value });
     }
   }
 
