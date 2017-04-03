@@ -1,24 +1,21 @@
-# README
+# KanbanBoard
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+KanbanBoard is full stack single page application
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- [x] User authentication, multisessions
+- [x] Lists, creating at the end of all Lists
+- [x] Lists, deleting
+- [x] Tasks, creating at end of each List
+- [x] Tasks, editing (changing title)
+- [x] Tasks, resolving (checkbox)
+- [x] Tasks, moving between columns (drag and drop)
+- [ ] Keep track order of tasks
 
-* System dependencies
+## Design Docs
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [React Components](./docs/components-hirerarchy.md)
+* [API Endpoints](./docs/endpoints.md)
+* [Database Schema](./docs/schema.md)
+* [State Shape](./docs/sample-state.md)

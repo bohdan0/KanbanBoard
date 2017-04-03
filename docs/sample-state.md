@@ -8,7 +8,7 @@
     1: {
       id: 1,
       title: "My first list",
-      tasks: [1, 2]
+      task_ids: [1, 2]
     }
   },
   tasks: {
