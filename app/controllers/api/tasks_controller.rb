@@ -26,7 +26,7 @@ class Api::TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
 
-    if @task.update_task(task_params)
+    if @task.update(task_params)
       render :show
     else
       render json: @task.errors.full_messages, status: 422

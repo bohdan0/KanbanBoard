@@ -62,13 +62,11 @@ const taskSource = {
     return task;
   },
   endDrag(props, monitor, component) {
-    if (!monitor.didDrop()) {
-      return;
-    }
+    if (!monitor.didDrop()) return;
 
     const task = monitor.getItem();
-    const { listId, newPosition, taskId } = monitor.getDropResult();
-    props.moveTask(task, listId, newPosition, taskId);
+    const { newListId, newPosition } = monitor.getDropResult();
+    props.moveTask(task, newListId, newPosition);
   }
 };
 
@@ -82,8 +80,9 @@ const sourceCollect = (connect, monitor) => {
 
 const dropTarget = {
   drop(props, monitor, component) {
-    const { task } = props;
-    return { listId: task.list_id, newPosition: task.position, taskId: task.id };
+    const { task, list } = props;
+    const newPosition = list.task_ids.indexOf(task.id);
+    return { newListId: list.id, newPosition };
   }
 };
 

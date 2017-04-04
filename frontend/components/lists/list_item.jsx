@@ -56,9 +56,10 @@ class ListItem extends React.Component {
 
 const dropTarget = {
   drop(props, monitor, component) {
-    const { list } = props;
-    if (monitor.isOver())
-      return { listId: list.id };
+    if (monitor.isOver()) {
+      const { list } = props;
+      return { newListId: list.id, newPosition: list.task_ids.length };
+    }
   }
 };
 
