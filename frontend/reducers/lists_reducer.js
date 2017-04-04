@@ -9,6 +9,7 @@ import { RECEIVE_TASK,
 
 const ListsReducer = (state = {}, action) => {
   Object.freeze(state);
+  let taskIds;
   let newState = merge({}, state);
   
   switch(action.type) {
@@ -25,7 +26,7 @@ const ListsReducer = (state = {}, action) => {
       delete newState[action.list.id];
       return newState;
     case RECEIVE_TASK:
-      var taskIds = newState[action.task.list_id].task_ids;
+      taskIds = newState[action.task.list_id].task_ids;
       if (taskIds.indexOf(action.task.id) === -1) {
         newState[action.task.list_id].task_ids = [action.task.id, ...taskIds];
       }
@@ -38,9 +39,10 @@ const ListsReducer = (state = {}, action) => {
       let idxToDelete = newState[action.oldListId].task_ids.indexOf(action.task.id);
       newState[action.oldListId].task_ids.splice(idxToDelete, 1);
       if (action.newPosition) {
-        newState[action.task.list_id].task_ids.splice(action.newPosition - 1, 0, action.task.id);
+        let idxToReplace = newState[action.task.list_id].task_ids.indexOf(action.taskId);
+        newState[action.task.list_id].task_ids.splice(idxToReplace, 0, action.task.id);
       } else {
-        var taskIds = newState[action.task.list_id].task_ids;
+        taskIds = newState[action.task.list_id].task_ids;
         newState[action.task.list_id].task_ids = [...taskIds, action.task.id];
       }
       return newState;

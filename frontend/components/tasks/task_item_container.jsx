@@ -10,7 +10,7 @@ const mapStateToProps = () => ({
 const mapDispatchToProps = dispatch => ({
   updateTask: task => dispatch(updateTask(task)),
   deleteTask: id => dispatch(deleteTask(id)),
-  moveTask: (task, listId, newPosition) => dispatch(moveTask(task, listId, newPosition))
+  moveTask: (task, listId, newPosition, taskId) => dispatch(moveTask(task, listId, newPosition, taskId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskItem);
