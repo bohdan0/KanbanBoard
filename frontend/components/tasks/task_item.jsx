@@ -67,8 +67,8 @@ const taskSource = {
     }
 
     const task = monitor.getItem();
-    const { listId, taskId } = monitor.getDropResult();
-    props.moveTask(task, listId, taskId);
+    const { listId, newPosition } = monitor.getDropResult();
+    props.moveTask(task, listId, newPosition);
   }
 };
 
@@ -83,7 +83,7 @@ const sourceCollect = (connect, monitor) => {
 const dropTarget = {
   drop(props, monitor, component) {
     const { task } = props;
-    return { listId: task.list_id, taskId: task.id };
+    return { listId: task.list_id, newPosition: task.position };
   }
 };
 

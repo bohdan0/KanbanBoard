@@ -15,10 +15,10 @@ export const removeTask = task => ({
   task
 });
 
-export const dropTask = (task, oldListId, taskId) => ({
+export const dropTask = (task, oldListId, newPosition) => ({
   type: DROP_TASK,
+  newPosition,
   oldListId,
-  taskId,
   task
 });
 
@@ -37,9 +37,10 @@ export const deleteTask = id => dispatch => (
     .then(task => dispatch(removeTask(task)))
 );
 
-export const moveTask = (task, listId, taskId) => dispatch => {
+export const moveTask = (task, listId, newPosition) => dispatch => {
   const oldListId = task.list_id;
   task.list_id = listId;
+  task.position = newPosition || null;
   TasksApiUtil.updateTask(task)
-    .then(updatedTask => dispatch(dropTask(updatedTask, oldListId, taskId)));
+    .then(updatedTask => dispatch(dropTask(updatedTask, oldListId, newPosition)));
 };

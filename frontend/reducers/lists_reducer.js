@@ -37,9 +37,8 @@ const ListsReducer = (state = {}, action) => {
     case DROP_TASK:
       let idxToDelete = newState[action.oldListId].task_ids.indexOf(action.task.id);
       newState[action.oldListId].task_ids.splice(idxToDelete, 1);
-      if (action.taskId) {
-        let idxToInsert = newState[action.task.list_id].task_ids.indexOf(action.taskId);
-        newState[action.task.list_id].task_ids.splice(idxToInsert, 0, action.task.id);
+      if (action.newPosition) {
+        newState[action.task.list_id].task_ids.splice(action.newPosition - 1, 0, action.task.id);
       } else {
         var taskIds = newState[action.task.list_id].task_ids;
         newState[action.task.list_id].task_ids = [...taskIds, action.task.id];
