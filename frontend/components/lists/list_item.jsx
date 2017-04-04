@@ -2,6 +2,7 @@ import React from 'react';
 import { DropTarget } from 'react-dnd';
 
 import TaskIndexContainer from '../tasks/tasks_index_container';
+import { dropTarget, dropCollect } from './dnd/list_item';
 
 class ListItem extends React.Component {
   constructor(props) {
@@ -54,19 +55,4 @@ class ListItem extends React.Component {
   }
 }
 
-const dropTarget = {
-  drop(props, monitor, component) {
-    if (monitor.isOver()) {
-      const { list } = props;
-      return { newListId: list.id, newPosition: list.task_ids.length };
-    }
-  }
-};
-
-const collect = (connect, monitor) => {
-  return {
-    connectDropTarget: connect.dropTarget()
-  };
-};
-
-export default DropTarget('task', dropTarget, collect)(ListItem);
+export default DropTarget('task', dropTarget, dropCollect)(ListItem);

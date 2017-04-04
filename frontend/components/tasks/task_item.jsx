@@ -2,6 +2,11 @@ import React from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 import { flow } from 'lodash';
 
+import { taskSource,
+         sourceCollect,
+         dropTarget,
+         dropCollect } from './dnd/task_item';
+
 class TaskItem extends React.Component {
   constructor(props) {
     super(props);
@@ -55,42 +60,6 @@ class TaskItem extends React.Component {
     ));
   }
 }
-
-const taskSource = {
-  beginDrag(props) {
-    const { task } = props;
-    return task;
-  },
-  endDrag(props, monitor, component) {
-    if (!monitor.didDrop()) return;
-
-    const task = monitor.getItem();
-    const { newListId, newPosition } = monitor.getDropResult();
-    props.moveTask(task, newListId, newPosition);
-  }
-};
-
-const sourceCollect = (connect, monitor) => {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-    newList: monitor.getDropResult()
-  };
-};
-
-const dropTarget = {
-  drop(props, monitor, component) {
-    const { task, list } = props;
-    const newPosition = list.task_ids.indexOf(task.id);
-    return { newListId: list.id, newPosition };
-  }
-};
-
-const dropCollect = (connect, monitor) => {
-  return {
-    connectDropTarget: connect.dropTarget()
-  };
-};
 
 export default flow(
   DragSource('task', taskSource, sourceCollect),
