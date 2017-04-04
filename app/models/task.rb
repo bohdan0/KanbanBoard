@@ -5,4 +5,7 @@ class Task < ApplicationRecord
   belongs_to :list
   has_one :author,
     through: :list
+
+  acts_as_list scope: :list
+  after_create :move_to_top
 end
