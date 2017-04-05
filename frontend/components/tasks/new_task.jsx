@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 class NewTask extends React.Component {
   constructor(props) {
@@ -10,8 +11,9 @@ class NewTask extends React.Component {
 
   createTask(e) {
     e.preventDefault();
-    this.props.createTask(this.state)
-      .then(this.setState({ title: ''}));
+    if (this.state.title.length > 0)
+      this.props.createTask(this.state)
+        .then(this.setState({ title: ''}));
   }
 
   update(type) {
@@ -24,6 +26,12 @@ class NewTask extends React.Component {
     return (
       <div className='task-item'>
         <form onSubmit={ this.createTask }>
+          <FontAwesome
+            onClick={ this.createTask }
+            className='task-item-new'
+            name='plus'
+            size='2x'
+          />
           <input
             type="text"
             value={ this.state.title }

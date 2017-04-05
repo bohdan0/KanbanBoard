@@ -1,6 +1,7 @@
 import React from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 import { flow } from 'lodash';
+import FontAwesome from 'react-fontawesome';
 
 import { taskSource,
          sourceCollect,
@@ -49,10 +50,11 @@ class TaskItem extends React.Component {
             value={ this.state.title }
             onChange={ this.update('title') }
           />
-          <input
-            type='button'
-            className='task-item-delete'
+          <FontAwesome
             onClick={ this.deleteTask }
+            className='task-item-delete'
+            name='times'
+            size='2x'
           />
         </form>
       </div>

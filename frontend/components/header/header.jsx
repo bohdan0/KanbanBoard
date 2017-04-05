@@ -1,14 +1,15 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 
 const Header = ({ username, logOut, router }) => (
   <div className='header'>
     <span>Hello { username }</span>
-    <img
-      className='header-logout'
+    <FontAwesome
       onClick={ () => logOut().then(() => router.push('/')) }
-      alt="log_out"
-      src="http://res.cloudinary.com/safenotes/image/upload/v1484796893/circular-power-on-button_xpm2sy.png"
+      className='header-logout'
+      name='sign-out'
+      size='2x'
     />
   </div>
 );

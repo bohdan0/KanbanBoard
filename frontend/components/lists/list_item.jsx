@@ -1,6 +1,7 @@
 import React from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 import { flow } from 'lodash';
+import FontAwesome from 'react-fontawesome';
 
 import TaskIndexContainer from '../tasks/tasks_index_container';
 import { listSource,
@@ -47,10 +48,11 @@ class ListItem extends React.Component {
               onChange={ this.update('title') }
             />
           </form>
-          <input
-            type='button'
-            className='list-item-delete'
+          <FontAwesome
             onClick={ this.deleteList }
+            className='list-item-delete'
+            name='times'
+            size='2x'
           />
         </div>
         <TaskIndexContainer list={ list } />

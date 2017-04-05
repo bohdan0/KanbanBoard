@@ -1,10 +1,23 @@
 .task-index {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  max-height: calc(100vh - 100px);
+
+  .task-item-new {
+    font-size: 1em;
+    margin-right: 10px;
+  }
+
+  .task-item-new {
+    cursor: pointer;
+  }
 
   .task-item {
     padding: 10px;
-    border: 1px black solid;
+    background: #fff;
+    border: 1px #ddd solid;
+    border-bottom: none;
 
     form {
       display: flex;
@@ -14,10 +27,16 @@
       }
 
       .task-item-delete {
-        width: 15px;
-        height: 15px;
-        background: red;
+        font-size: 1em;
+      }
+
+      .task-item-delete:hover {
+        cursor: pointer;
       }
     }
+  }
+
+  .task-item:last-of-type {
+    border-bottom: 1px #ddd solid;
   }
 }

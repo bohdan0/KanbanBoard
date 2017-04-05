@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 class NewList extends React.Component {
   constructor(props) {
@@ -10,8 +11,9 @@ class NewList extends React.Component {
 
   createList(e) {
     e.preventDefault();
-    this.props.createList(this.state)
-      .then(this.setState({ title: ''}));
+    if (this.state.title.length > 0)
+      this.props.createList(this.state)
+        .then(this.setState({ title: ''}));
   }
 
   update(type) {
@@ -23,7 +25,13 @@ class NewList extends React.Component {
   render() {
     return (
       <div className='list-item'>
-        <form onSubmit={ this.createList }>
+        <form onSubmit={ this.createList } className='list-item-new'>
+          <FontAwesome
+            onClick={ this.createList }
+            className='list-item-new-icon'
+            name='plus'
+            size='2x'
+          />
           <input
             type="text"
             value={ this.state.title }

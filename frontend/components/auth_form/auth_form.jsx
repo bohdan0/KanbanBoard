@@ -26,8 +26,20 @@ class AuthForm extends React.Component {
     this.props.processForm(this.state);
   }
 
+  renderGuestButton() {
+    if(this.props.formType !== 'sign-up') {
+      return (
+        <input
+          type="submit"
+          value='Guest Login'
+          onClick={ () => this.setState({ username: 'Guest', password: 'password'}) } />
+      );
+    }
+  }
+
   render() {
     const text = this.props.formType === 'sign-up' ? 'Create Account' : 'Sign In';
+    const passwordPlaceholder = text === 'Sign In' ? 'Password' : 'Password (min 6 characters)';
     const firstWord = text === 'Sign In' ? 'Don\'t' : 'Already';
     const oppositeText = text === 'Sign In' ? 'Sign Up' : 'Sign In';
     const oppositeForm = text === 'Sign In' ? 'sign-up' : 'sign-in';
@@ -50,7 +62,7 @@ class AuthForm extends React.Component {
               type="password"
               className='auth-form-input'
               value={ this.state.password }
-              placeholder='Password'
+              placeholder={ passwordPlaceholder }
               onChange={ this.update('password') }
             />
 
@@ -58,6 +70,8 @@ class AuthForm extends React.Component {
               type="submit"
               value={ text }
             />
+
+            { this.renderGuestButton() }
           </form>
         </div>
 

@@ -1,30 +1,42 @@
 .list-index {
   height: 100%;
-  background: #b5b5b5;
   display: flex;
   overflow-x: scroll;
+    background: #eee;
 
   .list-item {
     flex: 0 0 230px;
-    background: #f5efef;
-    border: 1px black solid;
-    margin: 20px;
     padding: 20px;
-    overflow-y: scroll;
 
     .list-item-header {
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid #0079bf;
       
       .list-item-title {
         margin-left: 10px;
       }
 
       .list-item-delete {
-        width: 20px;
-        height: 20px;
-        background: red;
+        font-size: 1em;
       }
+
+      .list-item-delete:hover {
+        cursor: pointer;
+      }
+    }
+
+    .list-item-new-icon {
+      font-size: 1em;
+      margin-right: 10px;
+    }
+
+    .list-item-new {
+      border-bottom: 1px solid #0079bf;
+    }
+
+    .list-item-new:hover {
+      cursor: pointer;
     }
   }
 }
