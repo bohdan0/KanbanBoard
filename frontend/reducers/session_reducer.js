@@ -21,7 +21,7 @@ const SessionReducer = (state = _nullUser, action) => {
       return newState;
     case REMOVE_LIST:
       const idxToDelete = newState.list_ids.indexOf(action.list.id);
-      newState.splice(idxToDelete, 1);
+      newState.list_ids.splice(idxToDelete, 1);
       return newState;
     case DROP_LIST:
       const idxFrom = newState.list_ids.indexOf(action.list.id);
