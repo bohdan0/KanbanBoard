@@ -7,4 +7,6 @@ class List < ApplicationRecord
   
   belongs_to :author,
     class_name: :User
+
+  acts_as_list scope: :author
 end

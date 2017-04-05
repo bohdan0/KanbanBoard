@@ -1,6 +1,6 @@
 class Api::ListsController < ApplicationController
   def index
-    @lists = List.where(author: current_user).includes(:tasks)
+    @lists = current_user.lists.includes(:tasks)
   end
 
   def show
@@ -43,6 +43,6 @@ class Api::ListsController < ApplicationController
 
   private
     def list_params
-      params.require(:list).permit(:title)
+      params.require(:list).permit(:title, :position)
     end
 end

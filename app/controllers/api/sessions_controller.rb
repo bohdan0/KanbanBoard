@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       log_in(@user)
-      render json: @user.to_json(only: [:id, :username, :password_digest]), status: 200
+      render :show
     else
       render json: ['Invalid Credentials'], status: 401
     end
@@ -16,7 +16,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       log_out
-      render json: @user.to_json(only: [:id, :username, :password_digest]), status: 200
+      render :show
     else
       render json: ['You are not logged in'], status: 401
     end
