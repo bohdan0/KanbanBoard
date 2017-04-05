@@ -5,7 +5,6 @@ export const taskSource = {
   },
   endDrag(props, monitor, component) {
     if (!monitor.didDrop()) return;
-
     const task = monitor.getItem();
     const { newListId, newPosition } = monitor.getDropResult();
     props.moveTask(task, newListId, newPosition);
@@ -15,8 +14,7 @@ export const taskSource = {
 export const sourceCollect = (connect, monitor) => {
   return {
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-    newList: monitor.getDropResult()
+    isDragging: monitor.isDragging()
   };
 };
 

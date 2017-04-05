@@ -33,7 +33,6 @@ class TaskItem extends React.Component {
   }
 
   render() {
-    const { id } = this.props.task;
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
     return connectDragSource(connectDropTarget(

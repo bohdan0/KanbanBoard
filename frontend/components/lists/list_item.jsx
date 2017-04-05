@@ -1,8 +1,12 @@
 import React from 'react';
-import { DropTarget } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
+import { flow } from 'lodash';
 
 import TaskIndexContainer from '../tasks/tasks_index_container';
-import { dropTarget, dropCollect } from './dnd/list_item';
+import { listSource,
+         sourceCollect,
+         dropTarget,
+         dropCollect } from './dnd/list_item';
 
 class ListItem extends React.Component {
   constructor(props) {
@@ -30,9 +34,9 @@ class ListItem extends React.Component {
   }
 
   render() {
-    const list = this.props.list;
-    const { connectDropTarget } = this.props;
-    return connectDropTarget(
+    const { list, isDragging, connectDragSource, connectDropTarget } = this.props;
+
+    return connectDragSource(connectDropTarget(
       <div className='list-item'>
         <div className='list-item-header'>
           <form onSubmit={ this.updateList }>
@@ -51,8 +55,11 @@ class ListItem extends React.Component {
         </div>
         <TaskIndexContainer list={ list } />
       </div>
-    );
+    ));
   }
 }
 
-export default DropTarget('task', dropTarget, dropCollect)(ListItem);
+export default flow(
+  DragSource('list', listSource, sourceCollect),
+  DropTarget(['list', 'task'], dropTarget, dropCollect)
+)(ListItem);

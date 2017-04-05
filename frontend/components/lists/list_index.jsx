@@ -1,5 +1,7 @@
 import React from 'react';
+import { DropTarget } from 'react-dnd';
 
+import { dropTarget, dropCollect } from './dnd/list_index';
 import ListItemContainer from './list_item_container';
 import NewList from './new_list';
 
@@ -9,14 +11,16 @@ class ListIndex extends React.Component {
   }
 
   render() {
-    const lists = this.props.lists;
-    return (
+    const { list_ids, connectDropTarget } = this.props;
+
+    return connectDropTarget(
       <div className='list-index'>
         {
-          Object.keys(lists).map(listId => (
+          list_ids.map(listId => (
             <ListItemContainer
               key={ listId }
-              list={ lists[listId] }
+              listId={ listId }
+              list_ids={ list_ids }
             />
           ))
         }
@@ -26,4 +30,4 @@ class ListIndex extends React.Component {
   }
 }
 
-export default ListIndex;
+export default DropTarget('list', dropTarget, dropCollect)(ListIndex);
