@@ -13,3 +13,9 @@ module KanbanBoard
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+Dynopoker.configure do |config|
+	config.address = 'http://kanbanboard0.herokuapp.com'
+  config.enable = true
+  config.poke_frequency = 300
+end
