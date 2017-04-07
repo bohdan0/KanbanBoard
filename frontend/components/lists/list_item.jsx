@@ -55,7 +55,7 @@ class ListItem extends React.Component {
             size='2x'
           />
         </div>
-        <TaskIndexContainer list={ list } />
+        <TaskIndexContainer listId={ list.id } />
       </div>
     ));
   }

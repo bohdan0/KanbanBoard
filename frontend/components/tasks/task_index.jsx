@@ -11,21 +11,21 @@ class TaskIndex extends React.Component {
   }
 
   createTask(task) {
-    task.list_id = this.props.list.id;
+    task.list_id = this.props.listId;
     return this.props.createTask(task);
   }
 
   render() {
-    const tasks = this.props.tasks;
-    const list = this.props.list;
+    const { task_ids } = this.props;
+
     return (
       <div className='task-index'>
         <NewTask createTask={ this.createTask } />
         {
-          list.task_ids.map(taskId => (
+          task_ids.map(taskId => (
             <TaskItemContainer
               key={ taskId }
-              task={ tasks[taskId] }
+              taskId={ taskId }
             />
           ))
         }

@@ -11,7 +11,7 @@ const ListsReducer = (state = {}, action) => {
   Object.freeze(state);
   let taskIds;
   let newState = merge({}, state);
-  
+
   switch(action.type) {
     case RECEIVE_ALL_LISTS:
       Object.keys(action.lists).forEach(listId => {
@@ -37,8 +37,13 @@ const ListsReducer = (state = {}, action) => {
       return newState;
     case DROP_TASK:
       let idxToDelete = newState[action.oldListId].task_ids.indexOf(action.task.id);
-      newState[action.oldListId].task_ids.splice(idxToDelete, 1);
-      newState[action.newListId].task_ids.splice(action.newPosition, 0, action.task.id);
+      if (action.oldListId === action.newListId) {
+        newState[action.newListId].task_ids.splice(action.newPosition, 0,
+          newState[action.newListId].task_ids.splice(idxToDelete, 1)[0]);
+      } else {
+        newState[action.oldListId].task_ids.splice(idxToDelete, 1);
+        newState[action.newListId].task_ids.splice(action.newPosition, 0, action.task.id);
+      }
       return newState;
     default:
       return newState;

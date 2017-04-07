@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
 
 import ListItem from './list_item';
-import { updateList, deleteList, moveList } from '../../actions/list_actions';
+import { updateList,
+         deleteList,
+         moveList } from '../../actions/list_actions';
 
-const mapStateToProps = ({ lists }, { listId }) => ({
+const mapStateToProps = ({ currentUser, lists }, { listId }) => ({
+  list_ids: currentUser.list_ids,
   list: lists[listId]
 });
 

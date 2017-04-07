@@ -20,7 +20,6 @@ class ListIndex extends React.Component {
             <ListItemContainer
               key={ listId }
               listId={ listId }
-              list_ids={ list_ids }
             />
           ))
         }

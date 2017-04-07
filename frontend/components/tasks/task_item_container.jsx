@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 
 import TaskItem from './task_item';
-import { updateTask, deleteTask, moveTask } from '../../actions/task_actions';
+import { updateTask,
+         deleteTask,
+         moveTask } from '../../actions/task_actions';
 
-const mapStateToProps = ({ lists }, { task }) => ({
-  list: lists[task.list_id]
+const mapStateToProps = ({ lists, tasks }, { taskId }) => ({
+  task: tasks[taskId],
+  list: lists[tasks[taskId].list_id]
 });
 
 const mapDispatchToProps = dispatch => ({

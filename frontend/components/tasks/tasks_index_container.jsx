@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 
 import TaskIndex from './task_index';
 import { createTask } from '../../actions/task_actions';
-import { selectTasks } from '../../selectors/tasks_selector';
 
-const mapStateToProps = ({ tasks }, { list }) => ({
-  tasks: selectTasks(tasks, list.task_ids),
-  list
+const mapStateToProps = ({ lists }, { listId }) => ({
+  task_ids: lists[listId].task_ids
 });
 
 const mapDispatchToProps = dispatch => ({

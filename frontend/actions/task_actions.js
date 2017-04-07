@@ -4,9 +4,8 @@ export const RECEIVE_TASK = 'RECEIVE_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
 export const DROP_TASK = 'DROP_TASK';
 
-export const receiveTask = (task, oldListId) => ({
+export const receiveTask = task => ({
   type: RECEIVE_TASK,
-  oldListId,
   task
 });
 
