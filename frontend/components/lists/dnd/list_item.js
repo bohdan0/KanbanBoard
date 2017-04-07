@@ -5,6 +5,7 @@ export const listSource = {
   },
   endDrag(props, monitor, component) {
     if (!monitor.didDrop()) return;
+
     const list = monitor.getItem();
     const { newPosition } = monitor.getDropResult();
     props.moveList(list, newPosition);

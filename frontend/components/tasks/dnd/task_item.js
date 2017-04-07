@@ -5,6 +5,7 @@ export const taskSource = {
   },
   endDrag(props, monitor, component) {
     if (!monitor.didDrop()) return;
+
     const task = monitor.getItem();
     const { newListId, newPosition } = monitor.getDropResult();
     props.moveTask(task, newListId, newPosition);
