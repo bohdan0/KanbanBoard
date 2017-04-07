@@ -9,7 +9,7 @@ import { RECEIVE_ALL_LISTS,
 const TasksReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = merge({}, state);
-  
+
   switch(action.type) {
     case RECEIVE_TASK:
     case DROP_TASK:
@@ -19,8 +19,10 @@ const TasksReducer = (state = {}, action) => {
       delete newState[action.task.id];
       return newState;
     case REMOVE_LIST:
-      action.list.task_ids.forEach(taskId => {
-        delete newState[taskId];
+      Object.keys(newState).forEach(taskId => {
+        if (newState[taskId].list_id === action.list.id) {
+          delete newState[taskId];
+        }
       });
       return newState;
     case RECEIVE_ALL_LISTS:
