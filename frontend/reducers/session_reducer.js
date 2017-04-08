@@ -1,7 +1,8 @@
 import merge from 'lodash/merge';
 
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { DROP_LIST,
+import { RECEIVE_ALL_LISTS,
+         DROP_LIST,
          RECEIVE_LIST,
          REMOVE_LIST } from '../actions/list_actions';
 
@@ -18,6 +19,10 @@ const SessionReducer = (state = _nullUser, action) => {
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       return action.currentUser || _nullUser;
+    case RECEIVE_ALL_LISTS:
+      newState.list_ids = action.lists.list_ids;
+      delete action.lists.list_ids;
+      return newState;
     case RECEIVE_LIST:
       if (newState.list_ids.indexOf(action.list.id) === -1) {
         newState.list_ids.push(action.list.id);

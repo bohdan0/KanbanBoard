@@ -6,3 +6,6 @@
     end
   end
 end
+json.list_ids do
+  json.array! @lists.map(&:id)
+end
