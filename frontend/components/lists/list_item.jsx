@@ -3,7 +3,7 @@ import { DragSource, DropTarget } from 'react-dnd';
 import { flow } from 'lodash';
 import FontAwesome from 'react-fontawesome';
 
-import TaskIndexContainer from '../tasks/tasks_index_container';
+import TaskIndexContainer from '../tasks/task_index_container';
 import { listSource,
          sourceCollect,
          dropTarget,

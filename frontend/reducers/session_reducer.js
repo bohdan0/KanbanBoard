@@ -38,7 +38,7 @@ const SessionReducer = (state = _nullUser, action) => {
         newState.list_ids.splice(idxFrom, 1)[0]);
       return newState;
     default:
-      return newState;
+      return state;
   }
 };
 
