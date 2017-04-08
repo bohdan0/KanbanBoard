@@ -5,7 +5,7 @@ import { updateList,
          deleteList,
          moveList } from '../../actions/list_actions';
 
-const mapStateToProps = ({ currentUser, lists }, { listId }) => ({
+const mapStateToProps = (_, { listId }) => ({ currentUser, lists }) => ({
   list_ids: currentUser.list_ids,
   list: lists[listId]
 });

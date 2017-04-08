@@ -5,7 +5,7 @@ import { updateTask,
          deleteTask,
          moveTask } from '../../actions/task_actions';
 
-const mapStateToProps = ({ lists, tasks }, { taskId }) => ({
+const mapStateToProps = (_, { taskId }) => ({ lists, tasks }) => ({
   task: tasks[taskId],
   list: lists[tasks[taskId].list_id]
 });
