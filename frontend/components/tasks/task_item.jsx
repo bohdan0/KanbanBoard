@@ -35,9 +35,15 @@ class TaskItem extends React.Component {
 
   render() {
     const { isDragging, connectDragSource, connectDropTarget } = this.props;
+    const draggingStyle = {
+      opacity: '.5'
+    };
 
     return connectDragSource(connectDropTarget(
-      <div className='task-item'>
+      <div
+        className='task-item'
+        style={ isDragging ? draggingStyle : {} }
+      >
         <form onSubmit={ this.updateTask }>
           <input
             type="checkbox"

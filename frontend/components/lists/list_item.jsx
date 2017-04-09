@@ -36,9 +36,15 @@ class ListItem extends React.Component {
 
   render() {
     const { listId, isDragging, connectDragSource, connectDropTarget } = this.props;
+    const draggingStyle = {
+      opacity: '.5'
+    };
 
     return connectDragSource(connectDropTarget(
-      <div className='list-item'>
+      <div
+        className='list-item'
+        style={ isDragging ? draggingStyle : {} }
+      >
         <div className='list-item-header'>
           <form onSubmit={ this.updateList }>
             <input
