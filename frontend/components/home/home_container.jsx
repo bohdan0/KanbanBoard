@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAllLists } from '../../actions/list_actions';
 import Home from './home';
 
-const mapStateToProps = store => ({
+const mapStateToProps = () => ({
 
 });
 

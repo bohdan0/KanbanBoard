@@ -25,7 +25,8 @@ export const dropTarget = {
       const { list } = props;
       switch(monitor.getItemType()) {
         case 'task':
-          return { newListId: list.id, newPosition: list.task_ids.length };
+        const { task_ids } = props;
+          return { newListId: list.id, newPosition: task_ids.length };
         case 'list':
           const { list_ids } = props;
           return { newPosition: list_ids.indexOf(list.id) };

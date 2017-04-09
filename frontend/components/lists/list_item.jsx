@@ -35,7 +35,7 @@ class ListItem extends React.Component {
   }
 
   render() {
-    const { list, isDragging, connectDragSource, connectDropTarget } = this.props;
+    const { listId, isDragging, connectDragSource, connectDropTarget } = this.props;
 
     return connectDragSource(connectDropTarget(
       <div className='list-item'>
@@ -55,7 +55,7 @@ class ListItem extends React.Component {
             size='2x'
           />
         </div>
-        <TaskIndexContainer listId={ list.id } />
+        <TaskIndexContainer listId={ listId } />
       </div>
     ));
   }

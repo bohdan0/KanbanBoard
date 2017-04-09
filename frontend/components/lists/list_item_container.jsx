@@ -5,9 +5,10 @@ import { updateList,
          deleteList,
          moveList } from '../../actions/list_actions';
 
-const mapStateToProps = (_, { listId }) => ({ currentUser, lists }) => ({
-  list_ids: currentUser.list_ids,
-  list: lists[listId]
+const mapStateToProps = (_, { listId }) => ({ listState, taskState }) => ({
+  list: listState.lists[listId],
+  list_ids: listState.list_ids,
+  task_ids: taskState.task_ids[listId] // is used by list dnd
 });
 
 const mapDispatchToProps = dispatch => ({

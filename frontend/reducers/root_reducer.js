@@ -6,8 +6,8 @@ import TasksReducer from './tasks_reducer';
 
 const RootReducer = combineReducers({
   currentUser: SessionReducer,
-  tasks: TasksReducer,
-  lists: ListsReducer
+  taskState: TasksReducer,
+  listState: ListsReducer
 });
 
 export default RootReducer;

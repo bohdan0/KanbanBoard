@@ -5,9 +5,9 @@ import { updateTask,
          deleteTask,
          moveTask } from '../../actions/task_actions';
 
-const mapStateToProps = (_, { taskId }) => ({ lists, tasks }) => ({
-  task: tasks[taskId],
-  list: lists[tasks[taskId].list_id]
+const mapStateToProps = (_, { taskId }) => ({ lists, taskState }) => ({
+  task: taskState.tasks[taskId],
+  task_ids: taskState.task_ids[taskState.tasks[taskId].list_id] // is used for task dnd
 });
 
 const mapDispatchToProps = dispatch => ({
